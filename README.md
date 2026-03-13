@@ -15,12 +15,16 @@ uvx copier copy --trust gh:branchv/python-template .
 - Package manager: [uv](https://docs.astral.sh/uv/)
 - Formatting: [Ruff](https://docs.astral.sh/ruff/formatter/)
 - Testing: [pytest](https://docs.pytest.org/en/latest/)
+- Test matrix: [tox](https://tox.wiki/) with [tox-uv](https://github.com/tox-dev/tox-uv)
 - Linting: [Ruff](https://docs.astral.sh/ruff/linter/) and [prek](https://github.com/j178/prek)
 - Typing: [ty](https://docs.astral.sh/ty/)
 - Task runner: [taskipy](https://github.com/illBeRoy/taskipy)
 - CI/CD: [Github Actions](https://docs.github.com/en/actions)
+  - CI matrix for Python 3.10-3.13 on Linux/macOS/Windows
+  - Optional [Codecov](https://about.codecov.io/) upload
   - Automated versioning, changelog, and release via [Conventional Commits](https://www.conventionalcommits.org/)
   - Automated dependency updates via [Dependabot](https://dependabot.com/)
+  - Issue templates for bug report and feature request
 - Editor integration: [VS Code](https://code.visualstudio.com/)
 - Documentation: [Zensical](https://zensical.org/) (optional)
 - Docker support (optional)

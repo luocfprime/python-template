@@ -7,24 +7,48 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - name: Set up uv
-        run: pipx install uv
-      - uses: actions/setup-python@v6
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: 3.13
       - name: Install package
         run: uv sync --frozen
       - name: Run linters
         run: uv run task lint
+
+  test:
+    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+      - name: Install package
+        run: uv sync --frozen --python {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Run tests
-        run: uv run task test
+        run: uv run pytest --cov={{project_name}} --cov-report=xml --cov-report=term
+      {% if codecov -%}
+      - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: true
+          token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
+      {% endif -%}
 
   release:
-    needs: build
+    needs: [quality, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'cd skip')
     steps:

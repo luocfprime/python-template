@@ -26,6 +26,12 @@ docs:
 docker:
   type: bool
   default: False
+codecov:
+  type: bool
+  default: False
+tox:
+  type: bool
+  default: True
 # type:
 #   type: str
 #   choices:

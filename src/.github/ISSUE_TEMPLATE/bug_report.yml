@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a reproducible bug
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for reporting. Please include enough detail to reproduce the issue."
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and expected behavior.
+      placeholder: A clear and concise description.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Exact steps, commands, and inputs.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version, OS, package version, and other relevant context.
+      placeholder: Python 3.12, macOS 15, ...
+    validations:
+      required: true

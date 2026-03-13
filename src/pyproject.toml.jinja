@@ -3,6 +3,7 @@ name = "{{project_name | lower | replace(' ', '-') | replace('_', '-')}}"
 version = "0.1.0"
 description = "{{project_description}}"
 readme = "README.md"
+license = "MIT"
 authors = [{ name = "{{author_name}}", email = "{{author_email}}" }]
 requires-python = ">=3.10"
 dependencies = []
@@ -12,7 +13,21 @@ classifiers = ["Private :: Do Not Upload"]
 {%- endif %}
 
 [dependency-groups]
-dev = ["prek", "pytest", "ruff", "taskipy", "ty"{%- if docs %}, "zensical"{%- endif %}]
+dev = [
+  "prek",
+  "pytest",
+  "pytest-cov",
+  "ruff",
+  "taskipy",
+  "ty",
+  {%- if tox %}
+  "tox",
+  "tox-uv",
+  {%- endif %}
+  {%- if docs %}
+  "zensical",
+  {%- endif %}
+]
 
 [tool.taskipy.tasks]
 clean = { cmd = "rm -rf .*_cache/ dist/", help = "Remove build artifacts" }
@@ -21,6 +36,9 @@ docs = { cmd = "zensical serve", help = "Serve documentation"}
 {% endif -%}
 lint = { cmd = "prek run --all-files", help = "Run linters and formatters" }
 test = { cmd = "pytest", help = "Run tests" }
+{% if tox -%}
+test-matrix = { cmd = "tox", help = "Run test matrix via tox-uv" }
+{% endif -%}
 
 [tool.pytest]
 testpaths = ["tests"]

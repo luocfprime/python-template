@@ -43,6 +43,14 @@ To run tests via [pytest](https://docs.pytest.org/en/latest/):
 uv run task test
 ```
 
+{% if tox -%}
+To run the test matrix locally via [tox](https://tox.wiki/):
+
+```sh
+uv run task test-matrix
+```
+{% endif -%}
+
 ## Releasing
 
 Releasing is fully automated via our [CI pipeline](.github/workflows/ci.yaml). On each commit to `main`, it will:
