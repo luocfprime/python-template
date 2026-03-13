@@ -1,13 +1,13 @@
 # Python Template
 
-[![CI](https://github.com/branchv/python-template/workflows/CI/badge.svg)](https://github.com/branchv/python-template/actions/workflows/ci.yaml)
+[![CI](https://github.com/luocfprime/python-template/workflows/CI/badge.svg)](https://github.com/luocfprime/python-template/actions/workflows/ci.yaml)
 
-A [Copier](https://github.com/copier-org/copier) template for a Python package based on my favorite tools. See the [rendered version](https://github.com/branchv/python-template/tree/rendered).
+A [Copier](https://github.com/copier-org/copier) template for a Python package based on my favorite tools. See the [rendered version](https://github.com/luocfprime/python-template/tree/rendered).
 
 ## Usage
 
 ```sh
-uvx copier copy --trust gh:branchv/python-template .
+uvx copier copy --trust gh:luocfprime/python-template .
 ```
 
 ## Features

@@ -7,13 +7,13 @@ project_description:
   default: "{{ project_name.capitalize() | replace('_', ' ') }}"
 author_name:
   type: str
-  default: Branch Vincent
+  default: lcf
 author_email:
   type: str
-  default: branchevincent@gmail.com
+  default: luocfprime@gmail.com
 repo_username:
   type: str
-  default: branchv
+  default: luocfprime
 repo_name:
   type: str
   default: "{{ project_name | lower | replace(' ', '-') | replace('_', '-') }}"
